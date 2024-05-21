@@ -24,7 +24,13 @@ export type AuthResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  signin: AuthResponse;
   signup: AuthResponse;
+};
+
+
+export type MutationSigninArgs = {
+  input: SigninInput;
 };
 
 
@@ -35,6 +41,11 @@ export type MutationSignupArgs = {
 export type Query = {
   __typename?: 'Query';
   get?: Maybe<Scalars['String']['output']>;
+};
+
+export type SigninInput = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 export type SignupInput = {
@@ -50,7 +61,6 @@ export type User = {
   firstName: Scalars['String']['output'];
   id: Scalars['Int']['output'];
   lastName: Scalars['String']['output'];
-  password?: Maybe<Scalars['String']['output']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -130,6 +140,7 @@ export type ResolversTypes = ResolversObject<{
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  SigninInput: SigninInput;
   SignupInput: SignupInput;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   User: ResolverTypeWrapper<User>;
@@ -142,6 +153,7 @@ export type ResolversParentTypes = ResolversObject<{
   Int: Scalars['Int']['output'];
   Mutation: {};
   Query: {};
+  SigninInput: SigninInput;
   SignupInput: SignupInput;
   String: Scalars['String']['output'];
   User: User;
@@ -154,6 +166,7 @@ export type AuthResponseResolvers<ContextType = any, ParentType extends Resolver
 }>;
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  signin?: Resolver<ResolversTypes['AuthResponse'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'input'>>;
   signup?: Resolver<ResolversTypes['AuthResponse'], ParentType, ContextType, RequireFields<MutationSignupArgs, 'input'>>;
 }>;
 
@@ -166,7 +179,6 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  password?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

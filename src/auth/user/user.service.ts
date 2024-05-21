@@ -11,7 +11,13 @@ export class UserService {
         return await this.userRepository.save(user);
     }
     async findOneByEmail(email:string){
-        return await this.userRepository.findOneBy({email:email})
+        //const user = await this.userRepository.findOneBy({email:email})
+        // only if entity.column({select:false})
+        const user = await this.userRepository.createQueryBuilder('user')
+        .addSelect('user.password').select().where('email = :email',{email}).getOne();
+        return user;
+        
+        
     }
 }
 
