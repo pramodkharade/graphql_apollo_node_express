@@ -26,8 +26,12 @@ type Mutation {
 
     signin(input: SigninInput!): AuthResponse!
 }
+type JwtPayload{
+    email: String!
+    userId: Int!
+}
 type Query{
-    get: String
+    currentUser: JwtPayload
 }
 schema{
     mutation: Mutation,

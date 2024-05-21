@@ -1,7 +1,5 @@
 import { Entity,Column, PrimaryGeneratedColumn} from "typeorm";
 
-
-
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
@@ -16,7 +14,7 @@ export class User {
     @Column({nullable:false})
     email: string="";
 
-    @Column({select: false})
+    @Column()
     password: string="";
 
 }
