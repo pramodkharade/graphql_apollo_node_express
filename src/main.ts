@@ -8,6 +8,6 @@ const bootstrap = async ()=>{
     }
     const {httpServer,server} = await appModule.startApollo();
 
-    httpServer.listen(4000,()=>console.log('Server is ready at http://localhost:4000/'+ server.graphqlPath))
+    httpServer.listen(4000,()=>console.log('Server is ready at http://localhost:4000'+ server.graphqlPath))
 }
 bootstrap()
