@@ -14,3 +14,6 @@
 `npm i jsonwebtoken @types/jsonwebtoken`
 
 `npm i dotenv --save`
+
+# create image with postgres docker image with container name and expose port and read env name of DB connection
+`docker run -ti --name app_postgres -p 5455:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=main postgres`
