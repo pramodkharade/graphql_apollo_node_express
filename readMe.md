@@ -17,3 +17,9 @@
 
 # create image with postgres docker image with container name and expose port and read env name of DB connection
 `docker run -ti --name app_postgres -p 5455:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=main postgres`
+
+# create image from app_postgress
+`docker commit app_postgres msgappdb`
+
+# while terminating docker. it should create container with same config
+`docker run --rm -ti -p 5455:5432 msgappdb`
