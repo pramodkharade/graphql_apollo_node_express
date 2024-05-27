@@ -1,39 +1,61 @@
-type User{
-    id: Int!
-    email: String!
-    firstName: String!
-    lastName: String!
+# generated Schema - do not edit # 
+
+type User {
+  id: Int!
+  email: String!
+  firstName: String!
+  lastName: String!
 }
 
-input SignupInput{
-    email: String!
-    password: String!
-    firstName: String!
-    lastName: String!
+input SignupInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
 }
 
-input SigninInput{
-    email: String!
-    password: String!
+input SigninInput {
+  email: String!
+  password: String!
 }
 
-type AuthResponse{
-    user: User!
-    jwt: String!
+type AuthResponse {
+  user: User!
+  jwt: String!
 }
+
 type Mutation {
-    signup(input: SignupInput!):AuthResponse!
+  signup(input: SignupInput!): AuthResponse!
+  signin(input: SigninInput!): AuthResponse!
+  sendMsg(input: SendMessageInput): Room
+}
 
-    signin(input: SigninInput!): AuthResponse!
+type JwtPayload {
+  email: String!
+  userId: Int!
 }
-type JwtPayload{
-    email: String!
-    userId: Int!
+
+type Query {
+  currentUser: JwtPayload
 }
-type Query{
-    currentUser: JwtPayload
+
+schema {
+  mutation: Mutation
+  query: Query
 }
-schema{
-    mutation: Mutation,
-    query: Query
+
+type Message {
+  from: Int!
+  content: String!
+}
+
+type Room {
+  id: Int!
+  users: [User]
+  messages: [Message]
+}
+
+input SendMessageInput {
+  message: String!
+  roomId: Int!
 }

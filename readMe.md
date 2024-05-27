@@ -23,3 +23,6 @@
 
 # while terminating docker. it should create container with same config
 `docker run --rm -ti -p 5455:5432 msgappdb`
+
+# 
+`npm i glob @types/glob`
